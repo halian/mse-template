@@ -1,0 +1,10 @@
+mse version: 2.0.0
+short name: L5R LCG
+full name: Legend of the Five Rings LCG
+icon: Dynasty-Back.png
+
+version: 2024-07-21
+
+include file: card_fields
+include file: set_fields
+include file: word_lists

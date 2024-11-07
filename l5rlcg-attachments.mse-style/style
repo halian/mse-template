@@ -1,0 +1,275 @@
+mse version: 2.0.0
+game : l5rlcg
+short name: Attachment
+full name: Attachment cards
+icon: attachment-icon.png
+installer group: l5rlcg/style/attachments
+position hint: 001
+
+version: 2024-07-21
+depends on:
+	package: l5rlcg.mse-game
+depends on:
+	package: l5rlcg.mse-symbol-font
+
+card width: 300
+card height: 418
+card dpi: 600
+card background: rgb(255,255,255)
+
+init script:
+	type_switch := { "attachment" }
+
+############################################################## Card fields
+card style:
+	############################# Background stuff
+	card clan:
+		left:	0
+		top:	0
+		width:	300
+		height:	419
+		z index: 1
+		mask: attachment-mask.png
+		render style: image
+		popup style: in place
+		choice images:
+			neutral: Neutral-attachment.png
+			crab: Crab-attachment.png
+			crane: Crane-attachment.png
+			dragon: Dragon-attachment.png
+			lion: Lion-attachment.png
+			phoenix: Phoenix-attachment.png
+			scorpion: Scorpion-attachment.png
+			unicorn: Unicorn-attachment.png
+	############################# Name Line
+	full name:
+		left: 13
+		top: 360
+		right: 218
+		alignment: center shrink-overflow
+		height: 30
+		padding bottom: 0
+		z index: 2
+		angle:90
+		font:
+			name: brushtipTexe TRIAL
+			size: 15
+		symbol font:
+			name: l5rlcg
+			size: 10
+			alignment: center middle shrink-overflow
+		always symbol: true
+
+
+
+	############################# Image
+	image:
+		left: 0
+		top: 0
+		width: 300
+		height:	264
+		z index: 0
+
+	############################# Fate Column
+	fate cost:
+		left: 7
+		top: 10
+		height: 40
+		width: 40
+		z index: 2
+		alignment: center middle shrink-overflow
+		font:
+			name: WC Mano Negra Bta
+			color: white
+			weight: bold
+			shadow color: black
+			shadow blur: 3
+			size: 23
+
+	military:
+		left: 17
+		top: 65
+		height: 40
+		width: 26
+		z index: 2
+		alignment: center middle shrink-overflow
+		font:
+			name: WC Mano Negra Bta
+			weight: bold
+			color: rgb(130,57,51)
+			shadow color: white
+			shadow blur: 5
+			size: 19
+		symbol font:
+			name: l5rlcg
+			size: 10
+			alignment: center middle shrink-overflow
+		always symbol: true
+
+	political:
+		left: 17
+		top: 101
+		height: 40
+		width: 26
+		z index: 2
+		alignment: center middle shrink-overflow
+		font:
+			name: WC Mano Negra Bta
+			weight: bold
+			color: rgb(0,56,80)
+			shadow color: white
+			shadow blur: 5
+			size: 19
+		symbol font:
+			name: l5rlcg
+			size: 10
+			alignment: center middle shrink-overflow
+		always symbol: true
+
+
+	############################# Card bottom
+	trait:
+		left: 42
+		top: 268
+		height: 20
+		width: 258
+		z index: 2
+		alignment: center middle shrink-overflow
+		font:
+			name: Segoe UI
+			style: italic
+			weight: bold
+			color: black
+			size: 8
+		symbol font:
+			name: l5rlcg
+			size: 10
+			alignment: center middle shrink-overflow
+		always symbol: true
+
+	rule text:
+		padding left: 15
+		padding right: 15
+		left: 42
+		top: 288
+		height: { max(15, 15 * card_style.rule_text.content_lines) }
+		width: 258
+		z index: 2
+		alignment: top left
+		line height line: 0.85
+		line height soft: 0.85
+		line height hard: 1.15
+		font:
+			name: Segoe UI
+			color: black
+			size: 9.25
+		symbol font:
+			name: l5rlcg
+			size: 10
+			alignment: center middle shrink-overflow
+
+	flavor text:
+		padding left: 15
+		padding right: 15
+		left: 42
+		top: {if card.rule_text == "" then card_style.rule_text.top + card_style.rule_text.height + 6 else card_style.rule_text.top + card_style.rule_text.height + 6}
+		height: { max(14, 14 * card_style.flavor_text.content_lines) }
+		width: 258
+		z index: 2
+		alignment: center
+		font:
+			name: Segoe UI
+			color: black
+			style: italic
+			size: 7.75
+
+	illustrator:
+		padding left: 15
+		padding right: 15
+		left: 23
+		top: 407
+		height: 10
+		width: 80
+		z index: 2
+		alignment: left
+		font:
+			name: Segoe UI
+			color: white
+			weight: bold
+			size: 5
+
+	influence cost:
+		left: 213
+		top: 405
+		height: 10
+		width: 20
+		z index: 2
+		alignment: left
+		font:
+			name: Segoe UI
+			color: white
+			size: 5
+		symbol font:
+			name: l5rlcg
+			size: 11
+			alignment: center middle shrink-overflow
+		always symbol: true
+
+	deck:
+		left: 245
+		top: 407
+		height: 10
+		width: 10
+		z index: 2
+		alignment: center
+		font:
+			name: Segoe UI
+			color: white
+			size: 5
+
+	card number:
+		left: 258
+		top: 407
+		height: 10
+		width: 10
+		z index: 2
+		alignment: center
+		font:
+			name: Segoe UI
+			color: white
+			size: 5
+
+	military bonus:
+		left: 10
+		top: 72
+		height: 15
+		width: 22
+		z index: 2
+		render style: text
+		popup style: in place
+		alignment: center middle shrink-overflow
+		font:
+			name: WC Mano Negra Bta
+			weight: bold
+			color: rgb(130,57,51)
+			shadow color: white
+			shadow blur: 5
+			size: 10
+		
+
+
+	political bonus:
+		left: 10
+		top: 108
+		height: 15
+		width: 22
+		z index: 2
+		alignment: center middle shrink-overflow
+		font:
+			name: WC Mano Negra Bta
+			weight: bold
+			color: rgb(0,56,80)
+			shadow color: white
+			shadow blur: 5
+			size: 10
+		

@@ -1,0 +1,332 @@
+############################################################## Card fields
+
+############################# Fields on all cards
+
+card field:
+	type: choice
+	name: card type
+	choice: Attachment
+	choice: Character
+	choice: Event
+	choice: Holding
+	choice: Province
+	choice: Stronghold
+	script:
+		stylesheet
+		type_switch()
+	card list visible: true
+	card list name: Type
+	card list column: 3
+	card list width: 50
+	card list alignment: center
+
+card field:
+	type: text
+	name: full name
+	save value: true
+	show statistics: false
+	editable: true
+	card list visible: true
+	card list name: Name
+	card list column: 1
+	card list width: 180
+	description: The name of the card
+
+card field:
+	type: choice
+	name: card clan
+	choice: neutral
+	choice: crab
+	choice: crane
+	choice: dragon
+	choice: lion
+	choice: phoenix
+	choice: scorpion
+	choice: unicorn
+	choice:	mantis
+	choice: spider
+	default name: neutral
+	show statistics: false
+	card list visible: true
+	card list name: Clan
+	card list column: 2
+	card list width: 60
+	card list alignment: center
+	description: The Clan indicator of the card, used to indicate card clan.
+
+card field:
+	type: image
+	name: image
+	show statistics: false
+	description: The image of the card
+
+card field:
+	type: text
+	name: rule text
+	show statistics: false
+	multi line: true
+	description: The rules text for the card
+
+card field:
+	type: text
+	name: flavor text
+	show statistics: false
+	multi line: true
+	description: The flavor text for the card
+
+card field:
+	type: text
+	name: full text
+	multi line: true
+	save value: false
+	show statistics: false
+	script:
+		combined_editor(
+			field1: card.rule_text,
+			separator: "<line>\n</line>"
+			field2: card.flavor_text
+		)
+	description: The rules and flavor text for the card; use up and down arrows to switch
+
+card field:
+	type: text
+	name: illustrator
+#	icon: stats/illustrator.png # "Illus." is used on canon cards instead of an icon
+	position hint: 210
+	default: set.artist
+	description: Illustrator of this card, the default value can be changed on the 'set info' tab
+	show statistics: false
+
+card field:
+	type: text
+	name: card number
+	description: Copyright of this card and cardnumber, the default value can be changed on the 'set info' tab
+
+card field:
+	type: text
+	name: trait
+	show statistics: false
+	card list visible: false
+	card list name: Traits
+	card list column:4
+	description: The trait of this card
+
+card field:
+	type: choice
+	name: deck
+	show statistics: false
+	card list visible: true
+	card list column:5
+	card list name: Deck
+	card list width: 40
+	card list alignment: center
+	choice: D
+	choice: C
+	description: Deck the card belongs to
+
+############################# Fields on characters/attachments/events
+
+card field:
+	type: text
+	name: fate cost
+	icon: stats/fate.png
+	position hint: 1
+	show statistics: true
+	card list visible: true
+	card list name: Fate
+	card list column: 6
+	card list alignment: center
+	card list width: 35
+	description: The fate cost of the card
+
+card field:
+	type: text
+	name: military
+	icon: stats/military.png
+	position hint: 1
+	show statistics: true
+	card list visible: true
+	card list name: Military Skill
+	card list column: 7
+	card list alignment: center
+	card list width: 65
+	description: The military skill of a character
+
+card field:
+	type: text
+	name: political
+	icon: stats/political.png
+	position hint: 1
+	show statistics: true
+	card list visible: true
+	card list name: Political Skill
+	card list column: 8
+	card list alignment: center
+	card list width: 65
+	description: The political skill of a character
+
+card field:
+	type: text
+	name: glory
+	position hint: 1
+	show statistics: true
+	card list visible: true
+	card list name: Glory
+	card list column: 9
+	card list alignment: center
+	card list width: 40
+	card list name: glory
+	icon: stats/glory.png
+	description: The glory of a character
+
+#####card field:
+#####	type: text
+#####	name: ptg
+#####	save value: false
+#####	script:
+#####		combined_editor(
+#####			field1: card.military,
+#####			separator: {"/"},
+#####			field2: card.political,
+#####			separator: {"/"},
+#####			field3: card.glory,
+#####			soft_before_empty: true,
+#####			hide_when_empty:   true
+#####		)
+#####	card list visible: true
+#####	card list column: 7
+#####	card list width: 50
+#####	card list name: M/P/G
+#####	description: Military/Political strength and glory of character
+#####	show statistics: false
+
+card field:
+	type: text
+	name: influence cost
+	icon: stats/influence.png
+	position hint: 1
+	show statistics: true
+	card list visible: true
+	card list name: Influence cost
+	card list column: 10
+	card list width: 65
+	card list alignment: center
+	description: Influence cost of the card
+
+card field:
+	type: text
+	name: card number
+	show statistics: true
+	card list visible: true
+	card list name: Card Number
+	card list column: 11
+	description: Set number of the card
+
+card field:
+	type: text
+	name: card set
+	description: Set card is part of
+
+############################# Fields on holdings/provinces/strongholds
+
+card field:
+	type: choice
+	name: military bonus
+	choice: +
+	choice: -
+	show statistics: false
+	card list visible: false
+	description: The attachment's military bonus or penalty symbol
+
+card field:
+	type: choice
+	name: political bonus
+	choice: +
+	choice: -
+	show statistics: false
+	card list visible: false
+	description: The attachment's political bonus or penalty symbol
+
+card field:
+	type: text
+	name: province element
+	show statistics: false
+	card list visible: true
+	card list name: Element
+	card list width: 80
+	card list alignment: center
+	card list column: 12
+	description: the element of the province
+
+card field:
+	type: text
+	name: province strength
+	position hint: 1
+	show statistics: true
+	show statistics: false
+	card list visible: true
+	card list name: Province Strength
+	card list column: 13
+	card list alignment: center
+	card list width: 80
+	description: The province strength
+
+card field:
+	type: text
+	name: province strength bonus
+	position hint: 1
+	show statistics: true
+	card list visible: true
+	card list name: Province Strength Bonus
+	card list column: 14
+	card list alignment: center
+	card list width: 80
+	description: The province strength bonus
+
+card field:
+	type: text
+	name: starting honor
+	position hint: 1
+	show statistics: true
+	card list visible: true
+	card list name: Starting Honor
+	card list column: 15
+	card list alignment: center
+	card list width: 60
+	description: The stronghold starting honor
+
+card field:
+	type: text
+	name: influence
+	icon: stats/influence.png
+	position hint: 1
+	show statistics: true
+	card list visible: true
+	card list name: Influence
+	card list column: 16
+	card list alignment: center
+	card list width: 60
+	description: The stronghold influence
+
+card field:
+	type: text
+	name: fate production
+	position hint: 1
+	show statistics: true
+	card list visible: true
+	card list name: Fate Production
+	card list column: 17
+	card list alignment: center
+	card list width: 75
+	description: The stronghold fate production
+
+card field:
+	type: choice
+	name: fate bonus
+	choice: +
+	position hint: 1
+	editable: false
+	show statistics: false
+	card list visible: false
+	default name: +
+	description: Type a + if you want your stronghold to produce fate. Or type a - if you feel, I'm not the L5R police.

@@ -1,0 +1,258 @@
+mse version: 2.0.0
+game : l5rlcg
+short name: stronghold
+full name: stronghold cards
+icon: stronghold-icon.png
+installer group: l5rlcg/style/strongholds
+position hint: 001
+
+version: 2024-07-21
+depends on:
+	package: l5rlcg.mse-game
+depends on:
+	package: l5rlcg.mse-symbol-font
+
+card width: 300
+card height: 418
+card dpi: 600
+card background: rgb(255,255,255)
+
+init script:
+	type_switch := { "stronghold" }
+
+############################################################## Card fields
+card style:
+	############################# Background stuff
+	card clan:
+		left:	0
+		top:	0
+		width:	300
+		height:	418
+		z index: 1
+		mask: stronghold-mask.png
+		render style: image
+		popup style: in place
+		choice images:
+			neutral: Neutral-stronghold.png
+			crab: Crab-stronghold.png
+			crane: Crane-stronghold.png
+			dragon: Dragon-stronghold.png
+			lion: Lion-stronghold.png
+			phoenix: Phoenix-stronghold.png
+			scorpion: Scorpion-stronghold.png
+			unicorn: Unicorn-stronghold.png
+	############################# Name Line
+	full name:
+		left: 55
+		top: 12
+		right: 255
+		alignment: center shrink-overflow
+		height: 30
+		padding bottom: 0
+		z index: 2
+		font:
+			name: brushtipTexe TRIAL
+			size: 15
+		symbol font:
+			name: l5rlcg
+			size: 10
+			alignment: center middle shrink-overflow
+		always symbol: true
+
+
+
+	############################# Image
+	image:
+		left: 0
+		top: 44
+		width: 300
+		height:	202
+		z index: 0
+
+	############################# Fate Column
+	province strength bonus:
+		left: 6
+		top: 7
+		height: 40
+		width: 40
+		z index: 2
+		alignment: center middle shrink-overflow
+		font:
+			name: WC Mano Negra Bta
+			color: rgb(93,70,44)
+			weight: bold
+			shadow color: white
+			shadow blur: 5
+			size: 24
+
+	starting honor:
+		left: 21
+		top: 364
+		height: 30
+		width: 20
+		z index: 2
+		alignment: center middle shrink-overflow
+		font:
+			name: WC Mano Negra Bta
+			color: rgb(93,70,44)
+			shadow color: white
+			shadow blur: 5
+			size: 13
+
+	influence:
+		left: 252
+		top: 364
+		height: 30
+		width: 20
+		z index: 2
+		alignment: center middle shrink-overflow
+		font:
+			name: WC Mano Negra Bta
+			color: rgb(93,70,44)
+			shadow color: white
+			shadow blur: 5
+			size: 13
+
+
+	############################# Card bottom
+	fate production:
+		left: 135
+		top: 360
+		height: 40
+		width: 30
+		z index: 2
+		alignment: center middle shrink-overflow
+		font:
+			name: WC Mano Negra Bta
+			
+			color: white
+			shadow color: rgb(93,70,44)
+			shadow blur: 7
+			size: 31
+
+	fate bonus:
+		left: 128
+		top: 366
+		height: 15
+		width: 15
+		z index: 2
+		render style: text
+		popup style: in place
+		alignment: center middle shrink-overflow
+		font:
+			name: WC Mano Negra Bta
+			color: white
+			shadow color: rgb(93,70,44)
+			shadow blur: 7
+			size: 12
+
+	trait:
+		left: 0
+		top: 242
+		height: 20
+		width: 300
+		z index: 2
+		alignment: center middle shrink-overflow
+		font:
+			name: Segoe UI
+			style: italic
+			weight: bold
+			color: black
+			size: 8
+		symbol font:
+			name: l5rlcg
+			size: 10
+			alignment: center middle shrink-overflow
+		always symbol: true
+
+	rule text:
+		padding left: 15
+		padding right: 15
+		left: 0
+		top: 262
+		height: { max(15, 15 * card_style.rule_text.content_lines) }
+		width: 300
+		z index: 2
+		alignment: top left
+		line height line: 0.85
+		line height soft: 0.85
+		line height hard: 1.15
+		font:
+			name: Segoe UI
+			color: black
+			size: 9.25
+		symbol font:
+			name: l5rlcg
+			size: 10
+			alignment: center middle shrink-overflow
+
+	flavor text:
+		padding left: 15
+		padding right: 15
+		left: 0
+		top: {if card.rule_text == "" then card_style.rule_text.top + card_style.rule_text.height + 6 else card_style.rule_text.top + card_style.rule_text.height + 6}
+		height: { max(14, 14 * card_style.flavor_text.content_lines) }
+		width: 300
+		z index: 2
+		alignment: center
+		font:
+			name: Segoe UI
+			color: black
+			style: italic
+			size: 7.75
+
+	illustrator:
+		padding left: 15
+		padding right: 15
+		left: 23
+		top: 407
+		height: 10
+		width: 80
+		z index: 2
+		alignment: left
+		font:
+			name: Segoe UI
+			color: white
+			weight: bold
+			size: 5
+
+	influence cost:
+		left: 213
+		top: 405
+		height: 10
+		width: 20
+		z index: 2
+		alignment: left
+		font:
+			name: Segoe UI
+			color: white
+			size: 5
+		symbol font:
+			name: l5rlcg
+			size: 11
+			alignment: center middle shrink-overflow
+		always symbol: true
+
+	deck:
+		left: 245
+		top: 407
+		height: 10
+		width: 10
+		z index: 2
+		alignment: center
+		font:
+			name: Segoe UI
+			color: white
+			size: 5
+
+	card number:
+		left: 258
+		top: 407
+		height: 10
+		width: 10
+		z index: 2
+		alignment: center
+		font:
+			name: Segoe UI
+			color: white
+			size: 5

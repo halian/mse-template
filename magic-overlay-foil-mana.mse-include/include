@@ -1,0 +1,6 @@
+mse version: 2.5.6
+version: 2024-11-07
+short name: mana foil
+installer group: magic/overlays/foil/mana
+position hint: 100
+icon: overlay.png

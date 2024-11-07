@@ -1,0 +1,823 @@
+mse version: 2.1.2
+game: magic
+short name: UB Deck Box
+full name: Universes Beyond Commander Deck
+installer group: magic/symbol display style
+icon: card-sample.png
+position hint: 999
+
+version: 2021-09-06
+depends on:
+	package: magic.mse-game
+	version: 2008-06-02
+
+card width: 884
+card height: 816
+card dpi: 150
+############################################################## Extra scripts
+init script:
+	is_unsorted := {true}
+	mana_t := {"new"}
+	guild_mana := {"false"}
+
+	name_blend := [
+		horizontal:[ 
+			1: {template(colors_2[0])}
+			2: {linear_blend(
+				image1: template(colors_2[0])
+				image2: template(colors_2[1])
+				x1: 0, y1: 0.1
+				x2: 0, y2: 0.2
+			)}
+		]
+	]
+
+	#fetch_color := {colors_2(input)[i] + "deck_name.jpg"}
+
+	bp_card_hybrid_2 := {
+		linear_blend(
+			image1: land_template(bp_colors[0])
+			image2: land_template(bp_colors[1])
+			x1: 0.6,  y1: 0
+			x2: 0.8,  y2: 0
+		)
+	}
+	
+	bp_vertical_card_hybrid := {
+		do_linear_blend := linear_blend
+		linear_blend := { do_linear_blend(x1: 0, x2: 0, y1: x1, y2: x2) }
+		card_hybrid.horizontal[bp_color_count]()
+	}
+	
+	bp_horizontal_card_hybrid := [
+		1: { land_template(bp_colors[0]) }
+		2: bp_card_hybrid_2
+		3: {linear_blend(
+			image1: land_template(bp_colors[0])
+			x1: 0.55,  y1: 0
+			x2: 0.65,   y2: 0
+			image2: linear_blend(
+			image1: land_template(bp_colors[1])
+			x1: 0.75,   y1: 0
+			x2: 0.85,  y2: 0
+			image2: land_template(bp_colors[2])
+		))}
+		4: {linear_blend(
+			# blend = 0.16
+			image1: land_template(bp_colors[0])
+			x1: 0.49,  y1: 0
+			x2: 0.62,  y2: 0
+			image2: linear_blend(
+			image1: land_template(bp_colors[1])
+			x1: 0.62,  y1: 0
+			x2: 0.73,  y2: 0
+			image2: linear_blend(
+				image1: land_template(bp_colors[2])
+				x1: 0.78, y1: 0
+				x2: 0.93, y2: 0
+				image2: land_template(bp_colors[3])
+		)))}
+		5: {linear_blend(
+			image1: land_template(bp_colors[0])
+			x1: 8.0 / 15,  y1: 0
+			x2: 9.0 / 15,  y2: 0
+			image2: linear_blend(
+			image1: land_template(bp_colors[1])
+			x1: 9.5 / 15,  y1: 0
+			x2: 10.5 / 15,  y2: 0
+			image2: linear_blend(
+				image1: land_template(bp_colors[2])
+				x1:  11 / 15,  y1: 0
+				x2: 12 / 15,  y2: 0
+				image2: linear_blend(
+				image1: land_template(bp_colors[3])
+				x1: 12.5 / 15,  y1: 0
+				x2: 13.0 / 15,  y2: 0
+				image2: land_template(bp_colors[4])
+		))))}
+		6: {linear_blend(
+			image1: land_template(bp_colors[0])
+			x1: 1.5 / 15,  y1: 0
+			x2: 3.1 / 15,  y2: 0
+			image2: linear_blend(
+			image1: land_template(bp_colors[1])
+			x1: 4.1 / 15,  y1: 0
+			x2: 5.7 / 15,  y2: 0
+			image2: linear_blend(
+				image1: land_template(bp_colors[2])
+				x1: 6.7 / 15,  y1: 0
+				x2: 8.3 / 15,  y2: 0
+				image2: linear_blend(
+				image1: land_template(bp_colors[3])
+				x1: 9.3 / 15,  y1: 0
+				x2: 10.9 / 15,  y2: 0
+				image2: linear_blend(
+					image1: land_template(bp_colors[4])
+					x1: 11.9 / 15, y1: 0
+					x2: 13.5 / 15, y2: 0
+					image2: land_template(bp_colors[5])
+		)))))}
+		#how this works:
+		7: {linear_blend(
+			#this whole thing is a linear blend (lb1)
+			#and a linear blend can only blend 2 images
+			image1: land_template(bp_colors[0])
+			#the first image of the lb1 is your first color
+			x1: 1.3 / 15,  y1: 0
+			x2: 2.7 / 15,  y2: 0
+			image2: linear_blend(
+			#the second image of the lb1 is a second linear blend (lb2)
+				image1: land_template(bp_colors[1])
+				#the first image of lb2 is your second color
+				x1: 3.5 / 15,  y1: 0
+				x2: 4.9 / 15,  y2: 0
+				image2: linear_blend(
+				#the second image of lb2 is lb3
+					image1: land_template(bp_colors[2])
+					#the first image of lb3 is your third color
+					x1: 5.7 / 15,  y1: 0
+					x2: 7.1 / 15,  y2: 0
+					image2: linear_blend(
+					#the second image of lb3 is lb4
+						image1: land_template(bp_colors[3])
+						#the first image of lb4 is your fourth color
+						x1: 7.9 / 15,  y1: 0
+						x2: 9.3 / 15,  y2: 0
+						image2: linear_blend(
+						#etc
+							image1: land_template(bp_colors[4])
+							x1: 10.1 / 15, y1: 0
+							x2: 11.5 / 15, y2: 0
+							image2: linear_blend(
+								image1: land_template(bp_colors[5])
+								x1: 12.3 / 15, y1: 0
+								x2: 13.7 / 15, y2: 0
+								image2: land_template(bp_colors[6])
+		))))))}
+	]
+	bp_card_hybrid := [
+		radial: [
+			0: { land_template("c") }
+			1: { land_template(bp_colors[0]) }
+			2: bp_card_hybrid_2
+			3: {linear_blend(
+				image1: bp_card_hybrid_2(bp_colors: bp_colors[0] + bp_colors[1]),
+				image2: land_template(bp_colors[2]),
+				x1: 0,  y1: 0.55
+				x2: 0,  y2: 0.77
+				)}
+			4: {linear_blend(
+				image1: bp_card_hybrid_2(bp_colors: bp_colors[0] + bp_colors[1])
+				image2: bp_card_hybrid_2(bp_colors: bp_colors[3] + bp_colors[2])
+				x1: 0,  y1: 0.4
+				x2: 0,  y2: 0.62
+				)}
+			5: {linear_blend(
+				image1: linear_blend(
+					image1: bp_card_hybrid_2(bp_colors: bp_colors[0] + bp_colors[1]),
+					image2: bp_card_hybrid_2(bp_colors: bp_colors[4] + bp_colors[2]),
+					x1: 0,  y1: 0.19
+					x2: 0,  y2: 0.35
+				),
+				image2: land_template(bp_colors[3]),
+				x1: 0,  y1: 0.777
+				x2: 0,  y2: 0.937
+				)}
+			6: {linear_blend(
+				image1: linear_blend(
+					image1: bp_card_hybrid_2(bp_colors: bp_colors[0] + bp_colors[1]),
+					image2: bp_card_hybrid_2(bp_colors: bp_colors[5] + bp_colors[2]),
+					x1: 0,  y1: 0.19
+					x2: 0,  y2: 0.35
+				),
+				image2: bp_card_hybrid_2(bp_colors: bp_colors[4] + bp_colors[3]),
+				x1: 0,  y1: 0.777
+				x2: 0,  y2: 0.937
+				)}
+			7: {linear_blend(
+				image1: linear_blend(
+					image1: linear_blend(
+						image1: bp_card_hybrid_2(bp_colors: bp_colors[0] + bp_colors[1]),
+						image2: bp_card_hybrid_2(bp_colors: bp_colors[6] + bp_colors[3]),
+						x1: 0,  y1: 0.34
+						x2: 0,  y2: 0.50
+					),
+					image2: bp_card_hybrid_2(bp_colors: bp_colors[5] + bp_colors[3]),
+					x1: 0,  y1: 0.877
+					x2: 0,  y2: 0.937
+				),
+				image2: land_template(bp_colors[4]),
+				x1: 0,  y1: 1.140
+				x2: 0,  y2: 1.300
+				)}
+		]
+		horizontal: bp_horizontal_card_hybrid
+		vertical: [
+			1: { land_template(bp_colors[0]) }
+			2: { linear_blend(
+				image1: land_template(bp_colors[0])
+				image2: land_template(bp_colors[1])
+				x1: 0,  y1: 0.4
+				x2: 0,  y2: 0.6
+				)}
+			3: bp_vertical_card_hybrid
+			4: bp_vertical_card_hybrid
+			5: bp_vertical_card_hybrid
+			6: bp_vertical_card_hybrid
+			7: bp_vertical_card_hybrid
+		]	
+	]
+	
+	bp_color_combination := {
+		base := bp_card_hybrid[shape][color_count]()
+		masked_blend(
+			mask:  "frame_blend_card.png",
+			dark:  land_template("c"),
+			light: base,
+		)
+	}
+	
+	bp_color_background := {
+		
+		# What type of 'hybrid'?
+		land     := false
+		multi    := false
+		hybrid   := chosen(choice:"hybrid")
+		artifact := false
+		template := land_template 
+		
+		# The selected colors
+		bp_colors := sort_text( order: if card_is_wedge(input) then "(wbgur)" else "(wubrg)"
+						, (if chosen(choice:"white") then "w")
+						+ (if chosen(choice:"blue")  then "u")
+						+ (if chosen(choice:"black") then "b")
+						+ (if chosen(choice:"red")   then "r")
+						+ (if chosen(choice:"green") then "g"))
+		if multi and (hybrid or bp_colors == "") then (
+			bp_colors := bp_colors + "m"
+			multi := false
+		)
+		if chosen(choice:"reversed") then bp_colors := reverse(bp_colors)
+		bp_color_count := number_of_items(in: bp_colors)
+	
+		# 'shape' / type of hybrid
+		shape := if      chosen(choice:"horizontal") then "horizontal"
+				else if chosen(choice:"vertical")   then "vertical"
+				else if chosen(choice:"overlay")    then "overlay"
+				else                                     "radial"
+	
+		bp_color_combination(color_count: bp_color_count, colors: bp_colors)
+	}
+	
+	name_card_hybrid_2 := {
+		linear_blend(
+			image1: land_template(name_colors[1])
+			image2: land_template(name_colors[0])
+			x1: 0,  y1: 0.35
+			x2: 0,  y2: 0.45
+		)
+	}
+	
+	name_vertical_card_hybrid := {
+		do_linear_blend := linear_blend
+		linear_blend := { do_linear_blend(x1: 0, x2: 0, y1: x1, y2: x2) }
+		card_hybrid.horizontal[name_color_count]()
+	}
+	
+	name_horizontal_card_hybrid := [
+		1: { land_template(name_colors[0]) }
+		2: name_card_hybrid_2
+		3: {linear_blend(
+			image1: land_template(name_colors[2])
+			x1: 0,  y1: 0.3
+			x2: 0,   y2: 0.4
+			image2: linear_blend(
+			image1: land_template(name_colors[1])
+			x1: 0,   y1: 0.45
+			x2: 0,  y2: 0.5
+			image2: land_template(name_colors[0])
+		))}
+		4: {linear_blend(
+			# blend = 0.16
+			image1: land_template(name_colors[3])
+			x1: 0,  y1: 0.3
+			x2: 0,  y2: 0.35
+			image2: linear_blend(
+			image1: land_template(name_colors[2])
+			x1: 0,  y1: 0.4
+			x2: 0,  y2: 0.42
+			image2: linear_blend(
+				image1: land_template(name_colors[1])
+				image2: land_template(name_colors[0])
+				x1: 0, y1: 0.45
+				x2: 0, y2: 0.5
+		)))}
+		5: {linear_blend(
+			image1: land_template(name_colors[4])
+			x1: 0,  y1: 0.3
+			x2: 0,  y2: 0.33
+			image2: linear_blend(
+			image1: land_template(name_colors[3])
+			x1: 0,  y1: 0.36
+			x2: 0,  y2: 0.39
+			image2: linear_blend(
+				image1: land_template(name_colors[2])
+				x1:  0,  y1: 0.41
+				x2: 0,  y2: 0.44
+				image2: linear_blend(
+				image1: land_template(name_colors[1])
+				x1: 0,  y1: 0.47
+				x2: 0,  y2: 0.50
+				image2: land_template(name_colors[0])
+		))))}
+		6: {linear_blend(
+			image1: land_template(name_colors[0])
+			x1: 1.5 / 15,  y1: 0
+			x2: 3.1 / 15,  y2: 0
+			image2: linear_blend(
+			image1: land_template(name_colors[1])
+			x1: 4.1 / 15,  y1: 0
+			x2: 5.7 / 15,  y2: 0
+			image2: linear_blend(
+				image1: land_template(name_colors[2])
+				x1: 6.7 / 15,  y1: 0
+				x2: 8.3 / 15,  y2: 0
+				image2: linear_blend(
+				image1: land_template(name_colors[3])
+				x1: 9.3 / 15,  y1: 0
+				x2: 10.9 / 15,  y2: 0
+				image2: linear_blend(
+					image1: land_template(name_colors[4])
+					x1: 11.9 / 15, y1: 0
+					x2: 13.5 / 15, y2: 0
+					image2: land_template(name_colors[5])
+		)))))}
+		#how this works:
+		7: {linear_blend(
+			#this whole thing is a linear blend (lb1)
+			#and a linear blend can only blend 2 images
+			image1: land_template(name_colors[0])
+			#the first image of the lb1 is your first color
+			x1: 1.3 / 15,  y1: 0
+			x2: 2.7 / 15,  y2: 0
+			image2: linear_blend(
+			#the second image of the lb1 is a second linear blend (lb2)
+				image1: land_template(name_colors[1])
+				#the first image of lb2 is your second color
+				x1: 3.5 / 15,  y1: 0
+				x2: 4.9 / 15,  y2: 0
+				image2: linear_blend(
+				#the second image of lb2 is lb3
+					image1: land_template(name_colors[2])
+					#the first image of lb3 is your third color
+					x1: 5.7 / 15,  y1: 0
+					x2: 7.1 / 15,  y2: 0
+					image2: linear_blend(
+					#the second image of lb3 is lb4
+						image1: land_template(name_colors[3])
+						#the first image of lb4 is your fourth color
+						x1: 7.9 / 15,  y1: 0
+						x2: 9.3 / 15,  y2: 0
+						image2: linear_blend(
+						#etc
+							image1: land_template(name_colors[4])
+							x1: 10.1 / 15, y1: 0
+							x2: 11.5 / 15, y2: 0
+							image2: linear_blend(
+								image1: land_template(name_colors[5])
+								x1: 12.3 / 15, y1: 0
+								x2: 13.7 / 15, y2: 0
+								image2: land_template(name_colors[6])
+		))))))}
+	]
+	name_card_hybrid := [
+		radial: [
+			0: { land_template("c") }
+			1: { land_template(name_colors[0]) }
+			2: name_card_hybrid_2
+			3: {linear_blend(
+				image1: name_card_hybrid_2(name_colors: name_colors[0] + name_colors[1]),
+				image2: land_template(name_colors[2]),
+				x1: 0,  y1: 0.55
+				x2: 0,  y2: 0.77
+				)}
+			4: {linear_blend(
+				image1: name_card_hybrid_2(name_colors: name_colors[0] + name_colors[1])
+				image2: name_card_hybrid_2(name_colors: name_colors[3] + name_colors[2])
+				x1: 0,  y1: 0.4
+				x2: 0,  y2: 0.62
+				)}
+			5: {linear_blend(
+				image1: linear_blend(
+					image1: name_card_hybrid_2(name_colors: name_colors[0] + name_colors[1]),
+					image2: name_card_hybrid_2(name_colors: name_colors[4] + name_colors[2]),
+					x1: 0,  y1: 0.19
+					x2: 0,  y2: 0.35
+				),
+				image2: land_template(name_colors[3]),
+				x1: 0,  y1: 0.777
+				x2: 0,  y2: 0.937
+				)}
+			6: {linear_blend(
+				image1: linear_blend(
+					image1: name_card_hybrid_2(name_colors: name_colors[0] + name_colors[1]),
+					image2: name_card_hybrid_2(name_colors: name_colors[5] + name_colors[2]),
+					x1: 0,  y1: 0.19
+					x2: 0,  y2: 0.35
+				),
+				image2: name_card_hybrid_2(name_colors: name_colors[4] + name_colors[3]),
+				x1: 0,  y1: 0.777
+				x2: 0,  y2: 0.937
+				)}
+			7: {linear_blend(
+				image1: linear_blend(
+					image1: linear_blend(
+						image1: name_card_hybrid_2(name_colors: name_colors[0] + name_colors[1]),
+						image2: name_card_hybrid_2(name_colors: name_colors[6] + name_colors[3]),
+						x1: 0,  y1: 0.34
+						x2: 0,  y2: 0.50
+					),
+					image2: name_card_hybrid_2(name_colors: name_colors[5] + name_colors[3]),
+					x1: 0,  y1: 0.877
+					x2: 0,  y2: 0.937
+				),
+				image2: land_template(name_colors[4]),
+				x1: 0,  y1: 1.140
+				x2: 0,  y2: 1.300
+				)}
+		]
+		horizontal: name_horizontal_card_hybrid
+		vertical: [
+			1: { land_template(name_colors[0]) }
+			2: { linear_blend(
+				image1: land_template(name_colors[0])
+				image2: land_template(name_colors[1])
+				x1: 0,  y1: 0.4
+				x2: 0,  y2: 0.6
+				)}
+			3: name_vertical_card_hybrid
+			4: name_vertical_card_hybrid
+			5: name_vertical_card_hybrid
+			6: name_vertical_card_hybrid
+			7: name_vertical_card_hybrid
+		]	
+	]
+	
+	name_color_combination := {
+		base := name_card_hybrid[shape][color_count]()
+		masked_blend(
+			mask:  "cdeck_name.jpg",
+			dark:  land_template("c"),
+			light: base,
+		)
+	}
+	
+	name_color_background := {
+		
+		# What type of 'hybrid'?
+		land     := false
+		multi    := false
+		hybrid   := chosen(choice:"hybrid")
+		artifact := false
+		template := land_template 
+		
+		# The selected colors
+		name_colors := sort_text( order: if card_is_wedge(input) then "(wbgur)" else "(wubrg)"
+						, (if chosen(choice:"white") then "w")
+						+ (if chosen(choice:"blue")  then "u")
+						+ (if chosen(choice:"black") then "b")
+						+ (if chosen(choice:"red")   then "r")
+						+ (if chosen(choice:"green") then "g"))
+		if multi and (hybrid or name_colors == "") then (
+			name_colors := name_colors + "m"
+			multi := false
+		)
+		if chosen(choice:"reversed") then name_colors := reverse(name_colors)
+		name_color_count := number_of_items(in: name_colors)
+	
+		# 'shape' / type of hybrid
+		shape := if      chosen(choice:"horizontal") then "horizontal"
+				else if chosen(choice:"vertical")   then "vertical"
+				else if chosen(choice:"overlay")    then "overlay"
+				else                                     "radial"
+	
+		name_color_combination(color_count: name_color_count, colors: name_colors)
+	}
+	
+	
+	mana_to_color := {
+		count  := number_of_items(in: colors)
+		if hybrid == "" and contains(type, match:"Artifact") then
+			# not a hybrid, but artifact
+			if      count == 0 then  "artifact"
+			else if count == 1 then  color_names_1() + ", artifact"
+			else if set.set_info.use_gradient_multicolor == "no"  then "artifact, multicolor" # stop here
+			else if count == 2 then  color_names_2() + ", artifact, multicolor"
+			else if set.set_info.use_gradient_multicolor != "yes" then "artifact, multicolor" # stop here
+			else if count == 3 then  color_names_3() + ", artifact, multicolor"
+			else if count == 4 then  color_names_4() + ", artifact, multicolor"
+			else if count == 5 then  color_names_5() + ", artifact, multicolor"
+			else                     "artifact, multicolor"
+		else if hybrid == "" then
+			# not a hybrid, not artifact
+			if      count == 0 then  "colorless"
+			else if count == 1 then  color_names_1()
+			else if count == 2 then  color_names_2() + ", multicolor"
+			else if count == 3 then  color_names_3() + ", multicolor"
+			else if count == 4 then  color_names_4() + ", multicolor"
+			else if count == 5 then  color_names_5() + ", multicolor"
+			else                     "multicolor"
+		else if contains(type, match:"Artifact") then
+			# hybrid, but artifact
+			if count == 0 then "artifact"
+			else if count == 1 then color_names_1() + ", artifact"
+			else if count == 2 then  color_names_2() + ", artifact"
+			else                     "artifact, multicolor"
+		else
+			# hybrid, not artifact
+			if count == 0 then "colorless"
+			else if count == 1 then color_names_1()
+			else if count == 2 then  color_names_2() + ", hybrid"
+			else                     "multicolor"
+	}
+############################################################## Set info fields
+set info style:
+	symbol:
+		variation:
+			name: invertedcommon
+			border radius: 0.10
+			fill type: solid
+			fill color:   rgb(255,255,255)
+			border color: rgb(0,0,0)
+############################################################## Extra style options
+styling field:
+	type: color
+	name: fringe color
+	choice:
+		name: default
+		color: rgb(60,105,124)
+	choice:
+		name: red
+		color: rgb(203,31,22)
+	description: The color for the bottom edge of the box
+styling field:
+	type: boolean
+	name: legendary foils
+	description: Include the legendary foils stamp
+styling field:
+	type: boolean
+	name: use Universes Beyond logo
+	description: adds a logo lower on the deckbox
+	initial: no
+styling field:
+	type: choice
+	name: colored deck name
+	choice: off
+	choice: masking
+	choice: import
+	choice: on
+	choice: switch to masking to generate mask
+	choice: switch to import and import saved mask
+	choice: switch to on to apply mask
+############################################################## Card fields
+card style:
+	card color:
+		top: 0
+		left: 0
+		width: 884
+		height: 816
+		z index: 1
+		render style: image
+		#popup style: in place
+		image: {bp_color_background(type:"newFrame", base_hybrid:bp_card_hybrid)}
+		
+	casting cost:
+		top: 470
+		left: 805
+		width: 45
+		height: 250
+		z index: 4
+		alignment: top center
+		direction: top to bottom
+		font:
+			name: MPlantin
+			size: 15
+		symbol font:
+			name: magic-deckbox-symbols-improved
+			size: 66
+			alignment: middle left
+		always symbol: true
+
+	image:
+		left: 470
+		top : 265
+		width:	290
+		height:	406
+		z index: 1
+		mask: corners.png
+		
+	image 2:
+		left: 0
+		top: 0
+		width: {if styling.colored_deck_name == "import" then 884 else 0}
+		height: 816
+		z index: 7
+	name:
+		top: 450
+		left: 800
+		width: 240
+		height: 30
+		angle: 90
+		z index: 6
+		alignment: middle center shrink-overflow
+		visible: {if styling.colored_deck_name == "import" or styling.colored_deck_name == "off" or styling.colored_deck_name == "masking" then true}
+		font:
+			name: Relay-Black
+			size: 16
+			color: rgb(255,255,255)
+		
+extra card field:
+	type: text
+	name: foil number
+	save value: true
+	editable: true
+extra card field:
+	type: choice
+	name: foil stamp
+	save value: false
+	editable: false
+	choice: stamp
+extra card field:
+	type: text
+	name: age
+	save value: true
+	editable: true
+extra card field:
+	type: choice
+	name: logo
+	save value: false
+	editable: false
+	choice: logo
+extra card field:
+	type: image
+	name: face blowup
+	save value: true
+	editable: true
+extra card field:
+	type: text
+	name: subtitle
+	save value: true
+	editable: true
+extra card field:
+	type: image
+	name: lower logo
+	save value: true
+	editable: true
+extra card field:
+	type: text
+	name: lower subtitle
+	save value: true
+	editable: true
+extra card field:
+	type: text
+	name: deck name 2
+	save value: true
+	editable: true
+extra card field:
+	type: choice
+	name: masking background
+	save value: false
+	editable: false
+	choice: masl
+extra card field:
+	type: choice
+	name: colored deck name
+	save value: false
+	editable: false
+	choice: name
+extra card field:
+	type: color
+	name: fringes
+	script: styling.fringe_color
+	editable: false
+	save value: false
+extra card style:
+	foil stamp:
+		top: 685
+		left: 770
+		width: 89
+		height: 89
+		render style: image
+		z index: 3
+		image: legend_foils.png
+		visible: {styling.legendary_foils}
+	foil number:
+		top: 707
+		left: 796
+		width: 38
+		height: 43
+		z index: 4
+		visible: {styling.legendary_foils}
+		alignment: middle center
+		font:
+			name: Relay-Black
+			size: 35
+			color: rgb(178, 178, 178)
+	age:
+		top: 150
+		left: 812
+		width: 40
+		height: 40
+		z index: 2
+		visible: true
+		alignment: middle center
+		font:
+			name: Impact
+			size: 20
+			color: rgb(0,0,0)
+	logo:
+		top: 150
+		left: 20
+		width: 356
+		height: 111
+		z index: 3
+		visible: true
+		render style: image
+		image: magic_logo.png
+	face blowup:
+		top: 0
+		left: 0
+		width: 884
+		bottom: 816
+		z index: 2
+		visible: true
+		mask: blowup_mask.png
+	subtitle:
+		top: 261
+		left: 20
+		width: 400
+		height: 50
+		z index: 3
+		visible: true
+		alignment: middle center
+		font:
+			name: Matrix Bold
+			size: 33
+			color: rgb(255,255,255)
+	lower logo:
+		top: {if styling.use_Universes_Beyond_logo then 631 else 1000}
+		left: 0
+		width: 423
+		height: 103
+		z index: 3
+		visible: {styling.use_Universes_Beyond_logo}
+		mask: logo_mask.png
+	lower subtitle:
+		top: 735
+		left: 30
+		width: 423
+		height: 50
+		z index: 3
+		alignment: middle left
+		font:
+			name: Relay-Black
+			size: 25
+			color: rgb(255,255,255)
+	deck name 2:
+		top: 450
+		left: 830
+		width: 240
+		height: 30
+		angle: 90
+		z index: 6
+		alignment: middle center shrink-overflow
+		visible: {if styling.colored_deck_name == "import" or styling.colored_deck_name == "off" or styling.colored_deck_name == "masking" then true}
+		font:
+			name: Relay-Black
+			size: 16
+			color: rgb(255,255,255)
+	masking background:
+		top: 0
+		left: 0
+		width: 884
+		height: 816
+		z index: 5
+		render style: image
+		image: {if styling.colored_deck_name == "masking" then "masking_background.png" else ""}
+	colored deck name:
+		top: 0
+		left: 0
+		width: 884
+		height: 816
+		z index: 6
+		render style: image
+		image: {if styling.colored_deck_name == "on" then name_color_background(input:card.card_color, type:"deck_name", base_hybrid:name_blend) else "" }
+		mask: {if styling.colored_deck_name == "on" then card.image_2 else ""}
+	fringes:
+		left: 0
+		top: 0
+		width: 884
+		height: 816
+		z index: 2
+		mask: bottom_mask.png
+		visible: true
